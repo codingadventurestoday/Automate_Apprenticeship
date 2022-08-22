@@ -27,3 +27,29 @@ def create_bs_obj(company_name):
         2. The company's website address has changed. Please ensure the http is correct.
         3. The script could not connect to the server. Ensure that you are connected to the internet. Then try again.'''
         return None 
+              
+def barclay_availability(barclay_bsObj):
+    try:
+        span_tag = barclay_bsObj.find('div', {'class': 'card-layout--card'}).span
+        span_tag_text = span_tag.get_text()
+        if span_tag_text.lower() == 'roles are closed':
+            position = 'closed'
+            return 
+        else:
+            position = 'open'            
+            return position
+    except:
+        print('''There is a problem with the the tag searches in the Barclay bsObj. Please ensure these tags are aligned with the webpage's HTML''')
+              
+              
+             
+              
+              
+              
+#this section is where each company's bsObj is created              
+barclay_bsObj = create_bs_object('barlclays')
+
+              
+#this section is where each company's position status is found through their bsObj              
+barclay_position_status = barclay_availability(barclay_bsObj)
+              
