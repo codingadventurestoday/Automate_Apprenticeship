@@ -40,16 +40,38 @@ def barclay_availability(barclay_bsObj):
             return position
     except:
         print('''There is a problem with the the tag searches in the Barclay bsObj. Please ensure these tags are aligned with the webpage's HTML''')
+                          
+def spotify_availability(spotify_bsObj):
+    return None            
               
+def linkedIn_availability(linkedIn_bsobj):
+    return None
               
-             
+def lyft_availability(lyft_bsObj):
+    return None
               
+def jpMorgan_availability(jpMorgan_bsObj):
+    return None
               
+def twitch_availability(twitch_bsObj):
+    return None 
               
 #this section is where each company's bsObj is created              
 barclay_bsObj = create_bs_object('barlclays')
-
+#spotify_bsObj = create_bs_object('spotify')
+#linkedIn_bsObj = create_bs_object('LinkedIn')
+#lfyt_bsObj = create_bs_object('Lfty')
+#jpMorgan = create_bs_object('JP Morgan')
+#twitch_bsObj = create_bs_object('Twitch')
+              
+              
+              
               
 #this section is where each company's position status is found through their bsObj              
 barclay_position_status = barclay_availability(barclay_bsObj)
+#spotify_position_status = spotify_availability(spotify_bsObj)
+#linkedIn_position_status = linkedIn_availability(linkedIn_bsObj)
+#lyft_position_status = lyft_availability(lyft_bsObj)
+#jpMorgan_position_status = jpMorgan_availability(jpMorgan_bsObj)
+#twitch_position_status = twitch_availability(twitch_bsObj)
               
