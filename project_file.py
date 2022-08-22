@@ -2,11 +2,13 @@ import urllib.request
 import beautifulSoup 
 
 # this dict stores apprenticeship companies names as keys and the urls used to look up availability as the values
-apprenticeship_opportunity = {'google': *****, 
-                              'dts': *****, 
-                              'spotify': ****,
-                              '': ****,
-                              '': ****,
+apprenticeship_opportunity = {'Barclays': 'https://search.jobs.barclays/foundation-apprenticeships', 
+                              'Tandem': 'https://madeintandem.com/about/apprenticeship-program/', 
+                              'Spotify': 'https://fellowship.spotify.com',
+                              'LinkedIn': 'https://careers.linkedin.com/reach/Backend',
+                              'Lyft': 'https://www.lyft.com/careers/university',
+                              'JP Morgan': 'https://careers.jpmorgan.com/global/en/students/programs/financial-services-apprenticeship?search=&tags=location__Americas__UnitedStatesofAmerica',
+                              'Twitch': 'https://www.twitch.tv/jobs/en/early-career/#apprentice'
                               }
 
 
