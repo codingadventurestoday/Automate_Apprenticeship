@@ -83,7 +83,14 @@ def jpMorgan_availability(jpMorgan_bsObj):
               
 def twitch_availability(twitch_bsObj):
     try:
-        return None 
+        class_c_list = twitch_bsObj.findAll('div', {'c-paragraph c-paragraph--primary c-paragraph--left'})
+        strong_tag = class_c_list[3].strong
+        position_information = strong_tag.get_text()
+        if position_information == 'closed':
+            position = 'closed'
+        else:
+            position = 'open'
+        return position
     except:      
         print('''There is a problem with the the tag searches in the Twitch bsObj. Please ensure these tags are aligned with the webpage's HTML''')
         return None 
