@@ -3,8 +3,7 @@ from bs4 import BeautifulSoup
 import re 
 
 # this dict stores apprenticeship companies names as keys and the urls used to look up availability as the values
-apprenticeship_opportunity = {'Barclays': 'https://search.jobs.barclays/foundation-apprenticeships', 
-                              'Tandem': 'https://madeintandem.com/about/apprenticeship-program/', 
+apprenticeship_opportunity = {'Barclays': 'https://search.jobs.barclays/foundation-apprenticeships',  
                               'LinkedIn': 'https://careers.linkedin.com/reach/Backend',
                               'JP Morgan': 'https://careers.jpmorgan.com/global/en/students/programs/financial-services-apprenticeship?search=&tags=location__Americas__UnitedStatesofAmerica',
                               'Twitch': 'https://www.twitch.tv/jobs/en/early-career/#apprentice'
@@ -38,14 +37,7 @@ def barclay_availability(barclay_bsObj):
         return position
     except:
         print('''There is a problem with the the tag searches in the Barclay bsObj. Please ensure these tags are aligned with the webpage's HTML''')
-        return None 
-              
-def tandem_availability(tandem_bsObj):
-    try:
-        return None 
-    except:      
-        print('''There is a problem with the the tag searches in the Tandem bsObj. Please ensure these tags are aligned with the webpage's HTML''')
-        return None             
+        return None           
               
 def linkedIn_availability(linkedIn_bsobj):
     try:
@@ -97,7 +89,6 @@ def twitch_availability(twitch_bsObj):
               
 #this section is where each company's bsObj is created              
 barclay_bsObj = create_bs_object('barlclays')
-tandem_bsObj = create_bs_object('tandem')
 linkedIn_bsObj = create_bs_object('LinkedIn')
 jpMorgan = create_bs_object('JP Morgan')
 twitch_bsObj = create_bs_object('Twitch')
@@ -107,8 +98,11 @@ twitch_bsObj = create_bs_object('Twitch')
               
 #this section is where each company's position status is found through their bsObj              
 barclay_position_status = barclay_availability(barclay_bsObj)
-tandem_position_status = tandem_availability(tandem_bsObj)
 linkedIn_position_status = linkedIn_availability(linkedIn_bsObj)
 jpMorgan_position_status = jpMorgan_availability(jpMorgan_bsObj)
 twitch_position_status = twitch_availability(twitch_bsObj)
-              
+
+print('Barclay: ', barclay_position_status)
+print('LinkedIn: ', linkedIn_position_status)
+print('JP Morgan: ', jpMorgan_position_status)
+print('Twitch: ', twitch_position_status)
