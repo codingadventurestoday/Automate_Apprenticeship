@@ -4,7 +4,6 @@ from bs4 import BeautifulSoup
 # this dict stores apprenticeship companies names as keys and the urls used to look up availability as the values
 apprenticeship_opportunity = {'Barclays': 'https://search.jobs.barclays/foundation-apprenticeships', 
                               'Tandem': 'https://madeintandem.com/about/apprenticeship-program/', 
-                              'Spotify': 'https://fellowship.spotify.com',
                               'LinkedIn': 'https://careers.linkedin.com/reach/Backend',
                               'Lyft': 'https://www.lyft.com/careers/university',
                               'JP Morgan': 'https://careers.jpmorgan.com/global/en/students/programs/financial-services-apprenticeship?search=&tags=location__Americas__UnitedStatesofAmerica',
@@ -19,7 +18,7 @@ def create_bs_obj(company_name):
     try:
         company_webpage = apprenticeship_opportunity[company_name]
         web_response = requests.get(company_webpage).content
-        bsObj = BeautifulSoup(web_response)
+        bsObj = BeautifulSoup(web_response, 'html.parser')
         return bsObj
     except: 
         print(f'''There is a problem with creating a BeauitfulSoup object with {company_name}. The problems may be: 
@@ -34,44 +33,72 @@ def barclay_availability(barclay_bsObj):
         span_tag_text = span_tag.get_text()
         if span_tag_text.lower() == 'roles are closed':
             position = 'closed'
-            return 
         else:
             position = 'open'            
-            return position
+        return position
     except:
         print('''There is a problem with the the tag searches in the Barclay bsObj. Please ensure these tags are aligned with the webpage's HTML''')
-                          
-def spotify_availability(spotify_bsObj):
-    return None            
+        return None 
+              
+def tandem_availability(tandem_bsObj):
+    try:
+        return None 
+    except:      
+        print('''There is a problem with the the tag searches in the Tandem bsObj. Please ensure these tags are aligned with the webpage's HTML''')
+        return None             
               
 def linkedIn_availability(linkedIn_bsobj):
-    return None
+    try:
+        return None 
+    except:      
+        print('''There is a problem with the the tag searches in the LinkedIn bsObj. Please ensure these tags are aligned with the webpage's HTML''')
+        return None 
               
 def lyft_availability(lyft_bsObj):
-    return None
+    try:
+        return None 
+    except:      
+        print('''There is a problem with the the tag searches in the Lyft bsObj. Please ensure these tags are aligned with the webpage's HTML''')
+        return None       
               
 def jpMorgan_availability(jpMorgan_bsObj):
-    return None
+    try:
+        jpmc_div_tags_list = bsobj.body.findAll('div', {'class': 'jpmc-wrapper'})
+        career_section = div_tags_list[11]
+        info_no_availability_tag = career_section.find('div', {'class': 'info-no-availability'})
+        availability = info_no_availability_tag.get_text()
+        if availability.lstrip() == 'Applications currently closed':
+            position = 'closed'
+        else:
+            position = 'open'
+        return position
+    expect: 
+        print('''There is a problem with the the tag searches in the JP Morgan bsObj. Please ensure these tags are aligned with the webpage's HTML''')
+        return None
               
 def twitch_availability(twitch_bsObj):
-    return None 
+    try:
+        return None 
+    except:      
+        print('''There is a problem with the the tag searches in the Twitch bsObj. Please ensure these tags are aligned with the webpage's HTML''')
+        return None 
               
 #this section is where each company's bsObj is created              
 barclay_bsObj = create_bs_object('barlclays')
-#spotify_bsObj = create_bs_object('spotify')
-#linkedIn_bsObj = create_bs_object('LinkedIn')
-#lfyt_bsObj = create_bs_object('Lfty')
-#jpMorgan = create_bs_object('JP Morgan')
-#twitch_bsObj = create_bs_object('Twitch')
+tandem_bsObj = create_bs_object('tandem')
+linkedIn_bsObj = create_bs_object('LinkedIn')
+lfyt_bsObj = create_bs_object('Lfty')
+jpMorgan = create_bs_object('JP Morgan')
+twitch_bsObj = create_bs_object('Twitch')
               
               
               
               
 #this section is where each company's position status is found through their bsObj              
 barclay_position_status = barclay_availability(barclay_bsObj)
-#spotify_position_status = spotify_availability(spotify_bsObj)
-#linkedIn_position_status = linkedIn_availability(linkedIn_bsObj)
-#lyft_position_status = lyft_availability(lyft_bsObj)
-#jpMorgan_position_status = jpMorgan_availability(jpMorgan_bsObj)
-#twitch_position_status = twitch_availability(twitch_bsObj)
+tandem_position_status = tandem_availability(tandem_bsObj)
+linkedIn_position_status = linkedIn_availability(linkedIn_bsObj)
+lyft_position_status = lyft_availability(lyft_bsObj)
+jpMorgan_position_status = jpMorgan_availability(jpMorgan_bsObj)
+twitch_position_status = twitch_availability(twitch_bsObj)
               
