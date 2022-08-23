@@ -5,7 +5,6 @@ from bs4 import BeautifulSoup
 apprenticeship_opportunity = {'Barclays': 'https://search.jobs.barclays/foundation-apprenticeships', 
                               'Tandem': 'https://madeintandem.com/about/apprenticeship-program/', 
                               'LinkedIn': 'https://careers.linkedin.com/reach/Backend',
-                              'Lyft': 'https://www.lyft.com/careers/university',
                               'JP Morgan': 'https://careers.jpmorgan.com/global/en/students/programs/financial-services-apprenticeship?search=&tags=location__Americas__UnitedStatesofAmerica',
                               'Twitch': 'https://www.twitch.tv/jobs/en/early-career/#apprentice'
                               }
@@ -49,22 +48,23 @@ def tandem_availability(tandem_bsObj):
               
 def linkedIn_availability(linkedIn_bsobj):
     try:
-        return None 
+        wrapper_div_list = obj.body.find('div', {'class': 'wrapper'})
+        banner_section_list = wrapper_div_list.findAll('div', {'class': 'banner parbase section'})
+        p_tag = section_list[1].p
+        status = p_tag.get_text()
+        if status == '':     #create regen to look for No longer accepting applications
+            position = 'closed'
+        else:
+            position = 'open'
+        return position
     except:      
         print('''There is a problem with the the tag searches in the LinkedIn bsObj. Please ensure these tags are aligned with the webpage's HTML''')
-        return None 
-              
-def lyft_availability(lyft_bsObj):
-    try:
-        return None 
-    except:      
-        print('''There is a problem with the the tag searches in the Lyft bsObj. Please ensure these tags are aligned with the webpage's HTML''')
         return None       
               
 def jpMorgan_availability(jpMorgan_bsObj):
     try:
         jpmc_div_tags_list = bsobj.body.findAll('div', {'class': 'jpmc-wrapper'})
-        career_section = div_tags_list[11]
+        career_section = jpmc_div_tags_list[11]
         info_no_availability_tag = career_section.find('div', {'class': 'info-no-availability'})
         availability = info_no_availability_tag.get_text()
         if availability.lstrip() == 'Applications currently closed':
@@ -87,7 +87,6 @@ def twitch_availability(twitch_bsObj):
 barclay_bsObj = create_bs_object('barlclays')
 tandem_bsObj = create_bs_object('tandem')
 linkedIn_bsObj = create_bs_object('LinkedIn')
-lfyt_bsObj = create_bs_object('Lfty')
 jpMorgan = create_bs_object('JP Morgan')
 twitch_bsObj = create_bs_object('Twitch')
               
@@ -98,7 +97,6 @@ twitch_bsObj = create_bs_object('Twitch')
 barclay_position_status = barclay_availability(barclay_bsObj)
 tandem_position_status = tandem_availability(tandem_bsObj)
 linkedIn_position_status = linkedIn_availability(linkedIn_bsObj)
-lyft_position_status = lyft_availability(lyft_bsObj)
 jpMorgan_position_status = jpMorgan_availability(jpMorgan_bsObj)
 twitch_position_status = twitch_availability(twitch_bsObj)
               
