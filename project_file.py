@@ -1,5 +1,6 @@
 import requests 
 from bs4 import BeautifulSoup 
+import re 
 
 # this dict stores apprenticeship companies names as keys and the urls used to look up availability as the values
 apprenticeship_opportunity = {'Barclays': 'https://search.jobs.barclays/foundation-apprenticeships', 
@@ -52,11 +53,15 @@ def linkedIn_availability(linkedIn_bsobj):
         banner_section_list = wrapper_div_list.findAll('div', {'class': 'banner parbase section'})
         p_tag = section_list[1].p
         status = p_tag.get_text()
-        if status == '':     #create regen to look for No longer accepting applications
-            position = 'closed'
-        else:
-            position = 'open'
+        try: 
+            check = re.findall(r'No longer accepting', status)
+            if check[0] == 'No longer accepting':
+                position = 'closed'
+            else:
+                position = 'open'
         return position
+        except: 
+            print('There was a problem with     
     except:      
         print('''There is a problem with the the tag searches in the LinkedIn bsObj. Please ensure these tags are aligned with the webpage's HTML''')
         return None       
