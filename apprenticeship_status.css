@@ -1,0 +1,12 @@
+body{
+    background-color: antiquewhite;
+}
+
+h2{
+    text-align: center;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+#status_table{
+    text-align: center;
+}
