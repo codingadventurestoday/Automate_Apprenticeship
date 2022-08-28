@@ -10,8 +10,7 @@ This project checks for the open status of SWE apprenticeships with multiple com
 Python3.10 
 BeautifulSoup 
 
-
-## GET STARTED 
+<!--- ## GET STARTED 
 
 ### PREREQUISITES 
 
@@ -20,6 +19,7 @@ BeautifulSoup
 
 
 ## USAGE 
+-->
 
 ## CONTRIBUTAION 
 
