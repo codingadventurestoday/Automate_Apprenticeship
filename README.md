@@ -29,7 +29,7 @@ CSS <br>
 
 - Include the Seleium Driver to scrap websites that has the apprenticeship position within JavaScript  <br>
 - Create an API to call the stored data from the Data Base to the Front-end web page  <br>
-- Store the retrieved data about the apprenticeships in a DatavBase   <br>
+- Store the retrieved data about the apprenticeships in a Data Base   <br>
 - Launch the webpage 
 
 
