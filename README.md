@@ -8,7 +8,11 @@ This project checks for the open status of SWE apprenticeships with multiple com
 
 ## BUILT WITH 
 Python3.10  <br>
-BeautifulSoup 
+BeautifulSoup  <br>
+Selenium  <br>
+Bootstrap  <br>
+HTML  <br>
+CSS <br>
 
 <!--- ## GET STARTED 
 
@@ -20,6 +24,15 @@ BeautifulSoup
 
 ## USAGE 
 -->
+
+## Road Map
+
+- Include the Seleium Driver to scrap websites that has the apprenticeship position within JavaScript  <br>
+- Create an API to call the stored data from the Data Base to the Front-end web page  <br>
+- Store the retrieved data about the apprenticeships in a DatavBase   <br>
+- Launch the webpage 
+
+
 
 ## CONTRIBUTAION 
 
